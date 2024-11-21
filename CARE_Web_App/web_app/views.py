@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-
 from .forms import CreateUserForm, LoginForm
-
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 # Home Page
 def home(request):
@@ -14,7 +13,7 @@ def home(request):
 def register(request):
     form = CreateUserForm()
 
-    if request.method == "POST":
+    if request.method == 'POST':
 
         form = CreateUserForm(request.POST)
 
@@ -22,7 +21,7 @@ def register(request):
 
             form.save()
 
-            # return redirect('')
+            return redirect('my-login')
 
     context = {'form': form}
 
@@ -33,7 +32,7 @@ def my_login(request):
 
     form = LoginForm()
 
-    if request.method == "POST":
+    if request.method == 'POST':
 
         form = LoginForm(request, data=request.POST)
 
@@ -48,10 +47,15 @@ def my_login(request):
 
                 auth.login(request, user)
 
-                return redirect('my-login')
+                return redirect('dashboard')
 
     context = {'form2':form}
 
     return render(request, 'web_app/my-login.html', context=context)
+
+# Dashboard
+@login_required(login_url='my-login')
+def dashboard  (request):
+    return render(request, 'web_app/dashboard.html')
 
 
