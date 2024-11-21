@@ -14,7 +14,7 @@
             <hr>
             <br>
 
-            <form method="POST">
+            <form method="POST" autocomplete="off">
 
                 <!-- mandatory or POST will not work -->
                 {% csrf_token %}
@@ -30,7 +30,7 @@
             <br>
 
             <div class="text-center">
-                <p> Already have an account? </p> <a href="{% url '' %}"> Login </a>
+                <p> Already have an account? </p> <a href="{% url 'my-login' %}"> Login </a>
             </div>
         </div>
 
