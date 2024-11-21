@@ -1,10 +1,12 @@
 {% extends 'web_app/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
     <body>
 
-        <div class="container bg-light shadow-md p-5">
+        <div class="container bg-light shadow-md p-5 form-layout">
             <h3> Create your account </h3>
 
             <h5> Welcome to the CARE Web App! </h5>
@@ -17,7 +19,7 @@
                 <!-- mandatory or POST will not work -->
                 {% csrf_token %}
 
-                {{form.as_p}}
+                {{form|crispy}}
 
                 <br>
 
