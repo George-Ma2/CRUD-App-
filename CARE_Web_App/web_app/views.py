@@ -7,7 +7,7 @@ def home(request):
 
     return render(request, 'web_app/index.html')
 
-# Register
+# Register a user
 def register(request):
     form = CreateUserForm()
 
@@ -20,4 +20,8 @@ def register(request):
             form.save()
 
             # return redirect('')
+
+    context = {'form': form}
+
+    return render(request, 'web_app/register.html', context = context)
 
