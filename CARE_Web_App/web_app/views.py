@@ -58,4 +58,10 @@ def my_login(request):
 def dashboard  (request):
     return render(request, 'web_app/dashboard.html')
 
+# Logut a user
+def logout (request):
+    
+    auth.logout(request)
+
+    return redirect('my-login')
 
