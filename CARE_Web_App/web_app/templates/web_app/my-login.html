@@ -1,0 +1,43 @@
+{% extends 'web_app/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <body>
+
+        <div class="container bg-light shadow-md p-5 form-layout">
+            <h3> Login to your account </h3>
+
+            <h5> Welcome to the CARE Web App! </h5>
+
+            <hr>
+            <br>
+
+            <form method="POST" autocomplete="off">
+
+                <!-- mandatory or POST will not work -->
+                {% csrf_token %}
+
+                {{form2|crispy}}
+
+                <br>
+
+                <button type="submit" class="btn btn-primary w-100 btn-block p-2"> Login </button>
+
+            </form>
+
+            <br>
+
+            <div class="text-center">
+                <p> Don't have an acount? </p> <a href="{% url 'register' %}"> Register </a>
+            </div>
+        </div>
+
+        <br>
+        
+    </body>
+
+
+
+{% endblock %}
